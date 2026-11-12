@@ -1,0 +1,13 @@
+name: Validação README
+on:
+    push:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+            - name: Logs da ação
+              run: echo ${{ github.repository }}\n${{ github.actor }}
+            - name: Verificando se há README
+              run: ([ $(ls README.md) == "README.md" ] && echo "Arquivo README.md encontrado com sucesso" || (echo "Falha ao procurar arquivo README.md" && exit 1))
